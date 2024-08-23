@@ -1,4 +1,4 @@
-# StudyNotion
+# PrepPal
 ## Live 
 https://study-notion-edtech-frontend-ten.vercel.app
 
