@@ -42,12 +42,12 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
   return (
     <>
       <div>
-        {
-            open ? (<div className="flex h-[calc(100vh-3.8rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800">
+        {open ? (
+          <div className="flex mt-6 h-[calc(100vh-3.2rem)] w-[320px] max-w-[350px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-1000">
             <div className="mx-5 flex flex-col items-start justify-between gap-2 gap-y-4 border-b border-richblack-600 py-5 text-lg font-bold text-richblack-25">
               <div className="flex w-full items-center justify-between ">
                 <div
-                 onClick={() => setOpen(!open)}
+                  onClick={() => setOpen(!open)}
                   className="flex h-[35px] w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
                   title="back"
                 >
@@ -66,7 +66,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                 </p>
               </div>
             </div>
-    
+
             <div className="h-[calc(100vh - 5rem)] overflow-y-auto">
               {courseSectionData.map((course, index) => (
                 <div
@@ -83,16 +83,16 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                       {/* <span className="text-[12px] font-medium">
                         Lession {course?.subSection.length}
                       </span> */}
-                      <span
-                        className={`transition-all duration-500`}
-                      >
-                        {
-                            activeStatus === course?.sectionName ? (<BsChevronDown />) : (<BsChevronUp />)
-                        }
+                      <span className={`transition-all duration-500`}>
+                        {activeStatus === course?.sectionName ? (
+                          <BsChevronDown />
+                        ) : (
+                          <BsChevronUp />
+                        )}
                       </span>
                     </div>
                   </div>
-    
+
                   {/* Sub Sections */}
                   {activeStatus === course?._id && (
                     <div className="transition-[height] duration-500 ease-in-out">
@@ -124,10 +124,15 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
                 </div>
               ))}
             </div>
-          </div>) 
-          : 
-          (<div onClick={() => setOpen(!open)} className="flex h-[35px] my-2 mx-2 w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"><IoIosArrowForward size={30} /></div>)
-        }
+          </div>
+        ) : (
+          <div
+            onClick={() => setOpen(!open)}
+            className="flex h-[35px] my-2 mx-2 w-[35px] items-center justify-center rounded-full bg-richblack-100 p-1 text-richblack-700 hover:scale-90"
+          >
+            <IoIosArrowForward size={30} />
+          </div>
+        )}
       </div>
     </>
   );

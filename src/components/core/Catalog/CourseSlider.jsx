@@ -1,41 +1,22 @@
-import React from 'react'
+import React from "react";
+import Course_Card from "./Course_Card";
 
-import {Swiper, SwiperSlide} from "swiper/react"
-import "swiper/css"
-import "swiper/css/free-mode"
-import "swiper/css/pagination"
-import { Autoplay,FreeMode,Navigation, Pagination}  from 'swiper'
-
-import Course_Card from './Course_Card'
-
-const CourseSlider = ({Courses}) => {
+const CourseSlider = ({ Courses }) => {
   return (
     <>
       {Courses?.length ? (
-        <Swiper
-        navigation={true} 
-          slidesPerView={1}
-          spaceBetween={25}
-          loop={true}
-          modules={[FreeMode, Pagination]}
-          breakpoints={{
-            1024: {
-              slidesPerView: 3,
-            },
-          }}
-          className="max-h-[30rem] mx-auto"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
           {Courses?.map((course, i) => (
-            <SwiperSlide key={i}>
-              <Course_Card course={course} Height={"h-[230px]  md:h-[250px]"} />
-            </SwiperSlide>
+            <div key={i} className="flex justify-center">
+              <Course_Card course={course} Height={"h-[230px] md:h-[250px]"} />
+            </div>
           ))}
-        </Swiper>
+        </div>
       ) : (
         <p className="text-xl text-richblack-5">No Course Found</p>
       )}
     </>
-  )
-}
+  );
+};
 
-export default CourseSlider
+export default CourseSlider;

@@ -1,16 +1,24 @@
-import signupImg from "../assets/Images/signup.webp"
-import Template from "../components/core/Auth/Template"
+import signupImg from "../assets/Images/signup.webp";
+import Template from "../components/core/Auth/Template";
+import HighlightText from "../components/core/HomePage/HighlightText";
 
 function Signup() {
   return (
-    <Template
-      title="Join the millions learning to code with StudyNotion for free"
-      description1="Build skills for today, tomorrow, and beyond."
-      description2="Education to future-proof your career."
-      image={signupImg}
-      formType="signup"
-    />
-  )
+    <>
+      <div className="h-20"></div>
+      <Template
+        title={
+          <>
+            New to <HighlightText text={"PrepPal"} />
+          </>
+        }
+        description1="Sign up first..."
+        description2="Peer-driven resources to enhance your learning journey."
+        image={signupImg}
+        formType="signup"
+      />
+    </>
+  );
 }
 
-export default Signup
+export default Signup;

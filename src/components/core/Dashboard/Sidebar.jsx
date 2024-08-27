@@ -32,9 +32,10 @@ export default function Sidebar() {
 
   return (
     <div>
+      
       {active ? (
-        <div className="block z-20 absolute md:relative">
-          <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-richblack-800 py-10 text-richblack-25">
+        <div className="block z-20 absolute md:relative ">
+          <div className="flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] border-r-richblack-700 bg-black mt-6 py-10 text-richblack-25">
             <div className="flex flex-col">
               <div
                 onClick={() => setActive(!active)}
@@ -81,10 +82,7 @@ export default function Sidebar() {
         </div>
       ) : (
         <div className="absolute top-10 left-5 md:left-5">
-          <div
-            onClick={() => setActive(!active)}
-            className="flex justify-end"
-          >
+          <div onClick={() => setActive(!active)} className="flex justify-end">
             <AiOutlineDoubleRight className="text-yellow-50 text-4xl" />
           </div>
         </div>

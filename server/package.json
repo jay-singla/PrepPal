@@ -14,6 +14,7 @@
     "bcrypt": "^5.1.0",
     "bscript": "^0.1.0",
     "cloudinary": "^1.36.4",
+    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "crypto-random-string": "^5.0.0",

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { MdNavigateNext } from "react-icons/md"
-import IconBtn from "../../../../common/IconBtn"
+import { MdNavigateNext } from "react-icons/md";
+import IconBtn from "../../../../common/IconBtn";
 import {
   addCourseDetails,
   editCourseDetails,
@@ -18,7 +18,6 @@ import ChipInput from "./ChipInput";
 import Upload from "../Upload";
 
 const CourseInformationForm = () => {
-
   const {
     register,
     handleSubmit,
@@ -26,7 +25,7 @@ const CourseInformationForm = () => {
     getValues,
     formState: { errors },
   } = useForm();
-
+ 
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
   const { course, editCourse } = useSelector((state) => state.course);
@@ -52,6 +51,7 @@ const CourseInformationForm = () => {
       setValue("courseCategory", course.category);
       setValue("courseRequirements", course.instructions);
       setValue("courseImage", course.thumbnail);
+      setValue("courseBranch", course.branch); // Add this line
     }
 
     getCategories();
@@ -66,6 +66,7 @@ const CourseInformationForm = () => {
       currentValues.courseTags.toString() !== course.tag.toString() ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
       currentValues.courseCategory._id !== course.category._id ||
+      currentValues.courseBranch !== course.branch || // Add this line
       currentValues.courseImage !== course.thumbnail ||
       currentValues.courseRequirements.toString() !==
         course.instructions.toString()
@@ -74,8 +75,8 @@ const CourseInformationForm = () => {
     else return false;
   };
 
-  //handles next button click
   const onSubmit = async (data) => {
+    console.log(data);
     if (editCourse) {
       if (isFormUpdated()) {
         const currentValues = getValues();
@@ -106,6 +107,10 @@ const CourseInformationForm = () => {
           formData.append("category", data.courseCategory);
         }
 
+        if (currentValues.courseBranch !== course.branch) { // Add this line
+          formData.append("branch", data.courseBranch); // Add this line
+        }
+
         if (
           currentValues.courseRequirements.toString() !==
           course.instructions.toString()
@@ -130,9 +135,7 @@ const CourseInformationForm = () => {
       } else {
         toast.error("NO Changes made so far");
       }
-      console.log("PRINTING FORMDATA", formData);
-      console.log("PRINTING result", result);
-
+      
       return;
     }
 
@@ -143,27 +146,19 @@ const CourseInformationForm = () => {
     formData.append("price", data.coursePrice);
     formData.append("whatYouWillLearn", data.courseBenefits);
     formData.append("category", data.courseCategory);
+    formData.append("branch", data.courseBranch); // Add this line
     formData.append("instructions", JSON.stringify(data.courseRequirements));
     formData.append("status", COURSE_STATUS.DRAFT);
     formData.append("tag", JSON.stringify(data.courseTags));
     formData.append("thumbnailImage", data.courseImage);
 
     setLoading(true);
-    console.log("BEFORE add course API call");
-    console.log("PRINTING FORMDATAiii", formData);
-    formData.forEach((value, key) => {
-      console.log(key, value);
-    });
-    
     const result = await addCourseDetails(formData, token);
     if (result) {
-      //console.log(setCourse(result));
       dispatch(setStep(2));
       dispatch(setCourse(result));
     }
     setLoading(false);
-    console.log("PRINTING FORMDATAAAA", formData);
-    console.log("PRINTING result", result);
   };
 
   return (
@@ -211,7 +206,7 @@ const CourseInformationForm = () => {
             valueAsNumber: true,
           })}
           className="w-full pl-6 pr-3 py-2 rounded-md bg-richblack-700 text-richblack-100"
-          />
+        />
         <HiOutlineCurrencyRupee className="absolute top-[55%] left-1 text-richblack-400" />
         {errors.coursePrice && <span>Course Price is Required**</span>}
       </div>
@@ -229,7 +224,6 @@ const CourseInformationForm = () => {
           <option value="" disabled>
             Choose a Category
           </option>
-
           {!loading &&
             courseCategories.map((category, index) => (
               <option key={index} value={category?._id}>
@@ -240,17 +234,37 @@ const CourseInformationForm = () => {
         {errors.courseCategory && <span>Course Category is Required</span>}
       </div>
 
+      {/* Branch Dropdown Field */}
+      <div className="text-richblack-100">
+        <label htmlFor="courseBranch">
+          Course Branch<sup>*</sup>
+        </label>
+        <select
+          id="courseBranch"
+          className="w-full px-3 py-2 rounded-md bg-richblack-700 text-richblack-100"
+          defaultValue=""
+          {...register("courseBranch", { required: true })}
+        >
+          <option value="" disabled>
+            Choose a Branch
+          </option>
+          <option value="CSE">CSE</option>
+          <option value="CCE">CCE</option>
+          <option value="ECE">ECE</option>
+          <option value="ME">ME</option>
+        </select>
+        {errors.courseBranch && <span>Course Branch is Required</span>}
+      </div>
       {/* create a custom component for handling tags input */}
       <ChipInput
-            label="Tags"
-            name="courseTags"
-            placeholder="Enter Tags and press Enter"
-            register={register}
-            errors={errors}
-            setValue={setValue}
-            getValues = {getValues}
+        label="Tags"
+        name="courseTags"
+        placeholder="Enter Tags and press Enter"
+        register={register}
+        errors={errors}
+        setValue={setValue}
+        getValues={getValues}
       />
-
       {/* create a component for uploading and showing preview of media */}
       <Upload
         name="courseImage"
@@ -296,11 +310,7 @@ const CourseInformationForm = () => {
         )}
 
         <div className="flex text-richblack-900 rounded-md px-3 py-1 font-medium items-center text-md bg-yellow-50 w-fit">
-          <button>
-            {
-              !editCourse?"Next" : "Save Changes"
-            }
-          </button>
+          <button>{!editCourse ? "Next" : "Save Changes"}</button>
           <MdNavigateNext />
         </div>
       </div>

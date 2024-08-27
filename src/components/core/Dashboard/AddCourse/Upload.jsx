@@ -111,7 +111,7 @@ export default function Upload({
               <FiUploadCloud className="text-2xl text-yellow-50" />
             </div>
             <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
-              Drag and drop an {!video ? "image" : "video"}, or click to{" "}
+              Drag and drop an Video / Image or click to{" "}
               <span className="font-semibold text-yellow-50">Browse</span> a
               file
             </p>

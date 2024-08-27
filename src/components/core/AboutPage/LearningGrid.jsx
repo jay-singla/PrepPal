@@ -5,42 +5,42 @@ import CTAButton from "../../../components/core/HomePage/Button";
 const LearningGridArray = [
   {
     order: -1,
-    heading: "World-Class Learning for",
-    highlightText: "Anyone, Anywhere",
+    heading: "Key Highlights of ",
+    highlightText: "PrepPal",
     description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.",
+      "PrepPal offers a range of features designed to enhance the academic journey of students. With a focus on collaboration and ease of use, we provide a comprehensive set of tools to facilitate effective learning.",
     BtnText: "Learn More",
     BtnLink: "/",
   },
   {
     order: 1,
-    heading: "Curriculum Based on Industry Needs",
+    heading: "User Profiles",
     description:
-      "Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs.",
+      "Each student has a profile where they can manage their uploaded videos, track their viewing history, and personalize their learning experience.",
   },
   {
     order: 2,
-    heading: "Our Learning Methods",
+    heading: "Rating and Review",
     description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring",
+      "Videos can be rated by users, helping others identify the most helpful content",
   },
   {
     order: 3,
-    heading: "Certification",
+    heading: "Mobile Responsiveness",
     description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring",
+      "The website is fully responsive, providing a seamless experience across all devices, including smartphones and tablets.",
   },
   {
     order: 4,
-    heading: `Rating "Auto-grading"`,
+    heading: "Categorized Content",
     description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring",
+      "Videos are organized into categories based on subjects and topics, making it easy for students to find relevant content quickly.",
   },
   {
     order: 5,
-    heading: "Ready to Work",
+    heading: "Upload Video and Notes",
     description:
-      "Studynotion partners with more than 275+ leading universities and companies to bring",
+      "User can sign up as instructor and can upload Lecture, notes , assignment and many more.",
   },
 ];
 
@@ -55,7 +55,7 @@ const LearningGrid = () => {
               card.order % 2 === 1
                 ? "bg-richblack-700 h-[294px]"
                 : card.order % 2 === 0
-                ? "bg-richblack-800 h-[294px]"
+                ? "bg-richblack-1000 h-[294px]"
                 : "bg-transparent"
             } ${card.order === 3 && "xl:col-start-2"}  `}
           >

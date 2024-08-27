@@ -10,6 +10,7 @@ export default function MyProfile() {
 
   return (
     <>
+    <div className="h-20"></div>
       <h1 className="mb-14 ml-16 md:ml-10 text-3xl font-medium text-richblack-5">
         My Profile
       </h1>

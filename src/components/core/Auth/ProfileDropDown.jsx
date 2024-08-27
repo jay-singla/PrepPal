@@ -24,7 +24,7 @@ export default function ProfileDropdown() {
         <img
           src={user?.image}
           alt={`profile-${user?.firstName}`}
-          className="aspect-square w-[30px] rounded-full object-cover"
+          className="aspect-square w-[30px] rounded-full object-cover border border-blue-500 animate-pulse-ring "
         />
         <AiOutlineCaretDown className="text-sm text-richblack-100" />
       </div>
@@ -42,8 +42,8 @@ export default function ProfileDropdown() {
           </Link>
           <div
             onClick={() => {
-              dispatch(logout(navigate))
-              setOpen(false)
+              dispatch(logout(navigate));
+              setOpen(false);
             }}
             className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25"
           >
@@ -53,5 +53,5 @@ export default function ProfileDropdown() {
         </div>
       )}
     </button>
-  )
+  );
 }

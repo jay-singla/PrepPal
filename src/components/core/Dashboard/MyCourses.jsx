@@ -25,6 +25,7 @@ export default function MyCourses() {
 
   return (
     <div>
+      <div className="h-20"></div>
       <div className="mb-14 flex w-full items-center justify-between">
         <h1 className="text-3xl w-full font-medium text-richblack-5 mt-10 md:mt-0">My Courses</h1>
         <IconBtn

@@ -39,8 +39,8 @@ function App() {
 
 
   return (
-   <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter relative">
-    <Navbar/>
+   <div className=" top-0 w-screen min-h-screen bg-richblack-1000 flex flex-col font-inter relative ">
+  <Navbar/>
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="catalog/:catalogName" element={<Catalog/>} />

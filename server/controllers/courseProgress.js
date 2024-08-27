@@ -6,6 +6,7 @@ const Course = require("../models/Course")
 
 exports.updateCourseProgress = async (req, res) => {
   const { courseId, subsectionId } = req.body
+  console.log("hello");
   const userId = req.user.id
 
   try {
@@ -17,7 +18,7 @@ exports.updateCourseProgress = async (req, res) => {
 
     // Find the course progress document for the user and course
     let courseProgress = await CourseProgress.findOne({
-      courseID: courseId,
+      courseID: courseID,
       userId: userId,
     })
 

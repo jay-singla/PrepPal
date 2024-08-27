@@ -36,6 +36,7 @@ export default function ViewCourse() {
 
   return (
     <>
+      <div className="h-20"></div>
       <div className="relative flex min-h-[calc(100vh-3.5rem)]">
         <VideoDetailsSidebar setReviewModal={setReviewModal} />
         <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
@@ -46,5 +47,5 @@ export default function ViewCourse() {
       </div>
       {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
     </>
-  )
+  );
 }

@@ -65,6 +65,7 @@ const VideoDetails = () => {
   };
 
   // go to the next video
+
   const goToNextVideo = () => {
     // console.log(courseSectionData)
 
@@ -99,6 +100,52 @@ const VideoDetails = () => {
     }
   };
 
+// const goToNextVideo = () => {
+//   const currentSectionIndx = courseSectionData.findIndex(
+//     (data) => data._id === sectionId
+//   );
+//   const currentSubSectionIndx = courseSectionData[
+//     currentSectionIndx
+//   ].subSection.findIndex((data) => data._id === subSectionId);
+//   const noOfSubsections =
+//     courseSectionData[currentSectionIndx].subSection.length;
+
+//   let nextSubSectionIndx = currentSubSectionIndx + 1;
+//   let nextSectionIndx = currentSectionIndx;
+
+//   // Find the next valid sub-section with video data
+//   while (nextSubSectionIndx >= noOfSubsections) {
+//     nextSectionIndx++;
+//     if (nextSectionIndx >= courseSectionData.length) {
+//       return; // No more sections
+//     }
+//     nextSubSectionIndx = 0;
+//   }
+
+//   // Skip invalid sub-sections within the current section
+//   while (
+//     nextSubSectionIndx < noOfSubsections &&
+//     !courseSectionData[nextSectionIndx].subSection[nextSubSectionIndx].videoUrl
+//   ) {
+//     nextSubSectionIndx++;
+//     if (nextSubSectionIndx >= noOfSubsections) {
+//       nextSectionIndx++;
+//       if (nextSectionIndx >= courseSectionData.length) {
+//         return; // No more sections
+//       }
+//       nextSubSectionIndx = 0;
+//     }
+//   }
+
+//   if (nextSectionIndx < courseSectionData.length) {
+//     navigate(
+//       `/view-course/${courseId}/section/${courseSectionData[nextSectionIndx]._id}/sub-section/${courseSectionData[nextSectionIndx].subSection[nextSubSectionIndx]._id}`
+//     );
+//   }
+// };
+
+
+
   // check if the lecture is the last video of the course
   const isLastVideo = () => {
     const currentSectionIndx = courseSectionData.findIndex(
@@ -122,7 +169,9 @@ const VideoDetails = () => {
     }
   };
 
-  // go to the previous video
+
+  // // go to the previous video
+
   const goToPrevVideo = () => {
     // console.log(courseSectionData)
 
@@ -156,6 +205,52 @@ const VideoDetails = () => {
     }
   };
 
+  // const goToPrevVideo = () => {
+  //   const currentSectionIndx = courseSectionData.findIndex(
+  //     (data) => data._id === sectionId
+  //   );
+  //   const currentSubSectionIndx = courseSectionData[
+  //     currentSectionIndx
+  //   ].subSection.findIndex((data) => data._id === subSectionId);
+
+  //   let prevSubSectionIndx = currentSubSectionIndx - 1;
+  //   let prevSectionIndx = currentSectionIndx;
+
+  //   // Find the previous valid sub-section with video data
+  //   while (prevSubSectionIndx < 0) {
+  //     prevSectionIndx--;
+  //     if (prevSectionIndx < 0) {
+  //       return; // No more sections
+  //     }
+  //     prevSubSectionIndx =
+  //       courseSectionData[prevSectionIndx].subSection.length - 1;
+  //   }
+
+  //   // Skip invalid sub-sections within the current section
+  //   while (
+  //     prevSubSectionIndx >= 0 &&
+  //     !courseSectionData[prevSectionIndx].subSection[prevSubSectionIndx]
+  //       .videoUrl
+  //   ) {
+  //     prevSubSectionIndx--;
+  //     if (prevSubSectionIndx < 0) {
+  //       prevSectionIndx--;
+  //       if (prevSectionIndx < 0) {
+  //         return; // No more sections
+  //       }
+  //       prevSubSectionIndx =
+  //         courseSectionData[prevSectionIndx].subSection.length - 1;
+  //     }
+  //   }
+
+  //   if (prevSectionIndx >= 0) {
+  //     navigate(
+  //       `/view-course/${courseId}/section/${courseSectionData[prevSectionIndx]._id}/sub-section/${courseSectionData[prevSectionIndx].subSection[prevSubSectionIndx]._id}`
+  //     );
+  //   }
+  // };
+
+
   const handleLectureCompletion = async () => {
     setLoading(true);
     const res = await markLectureAsComplete(
@@ -167,10 +262,11 @@ const VideoDetails = () => {
     }
     setLoading(false);
   };
-
+ console.log(videoData);
   return (
-    <div className="flex flex-col gap-5 text-white">
-      {!videoData ? (
+    <div className="flex flex-col gap-5 text-white mt-16">
+      
+      {videoData.timeDuration=="undefined"  ? (
         <img
           src={previewSource}
           alt="Preview"
@@ -194,36 +290,18 @@ const VideoDetails = () => {
               }}
               className="full absolute inset-0 z-[100] grid h-full place-content-center font-inter"
             >
-              {/* {!completedLectures.includes(subSectionId) && (
-                <IconBtn
-                  disabled={loading}
-                  onclick={() => handleLectureCompletion()}
-                  text={!loading ? "Mark As Completed" : "Loading..."}
-                  customClasses="text-xl max-w-max px-4 mx-auto"
-                />
-              )} */}
+             
 
               {!completedLectures.includes(subSectionId) && (
                 <button
-                  className="mx-auto bg-yellow-100 text-richblack-900 px-3 py-2 rounded-md text-xl mb-6"
+                  className="mx-auto bg-yellow-100 text-richblack-900 px-3 py-2 rounded-md text-xl mb-6 "
                   onClick={() => handleLectureCompletion()}
                 >
                   {!loading ? "Mark As Completed" : "Loading..."}
                 </button>
               )}
 
-              {/* <IconBtn
-                disabled={loading}
-                onclick={() => {
-                  if (playerRef?.current) {
-                    // set the current time of the video to 0
-                    playerRef?.current?.seek(0)
-                    setVideoEnded(false)
-                  }
-                }}
-                text="Rewatch"
-                customClasses="text-xl max-w-max px-4 mx-auto mt-2"
-              /> */}
+      
               <button
                 onClick={() => {
                   if (playerRef?.current) {
@@ -261,8 +339,8 @@ const VideoDetails = () => {
         </Player>
       )}
 
-      {/* <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
-      <p className="pt-2 pb-6">{videoData?.description}</p> */}
+       <h1 className="mt-4 text-3xl font-semibold">{videoData?.title}</h1>
+      <p className="pt-2 pb-6">{videoData?.description}</p> 
     </div>
   );
 };
