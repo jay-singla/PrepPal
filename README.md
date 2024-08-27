@@ -1,10 +1,10 @@
 # PrepPal
 ## Live 
-https://study-notion-edtech-frontend-ten.vercel.app
+https://prep-pal-sigma.vercel.app/
 
 ## Installation
 
-1. Clone the repository: `https://github.com/Agamswarup/StudyNotion-edtech`
+1. Clone the repository: `https://github.com/jay-singla/PrepPal`
 2. Navigate to the project directory: `cd `
 3. Install dependencies: `npm install`
 
